@@ -12,15 +12,15 @@ export default function Movie({ title, id, poster_path, release_date }:{
   if (!poster_path) {
     return null;
   }
-  
+
   const imageUrl = `https://image.tmdb.org/t/p/original${poster_path}`;
 
   return (
     <div className="flex flex-col items-center">
-      <Link href={`/${id}`}>
+      <Link href={`/${id}`} title={`${title}`}>
         <Image src={imageUrl} alt={title} width={150} height={200} />
       </Link>
-      <h2>{title}</h2>
+      <h2 >{title}</h2>
       <p>{release_date}</p>
     </div>
   );
