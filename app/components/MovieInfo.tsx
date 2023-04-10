@@ -1,6 +1,4 @@
 
-
-
 export default function MovieInfo ({ title, overview, genres, releaseDate }: {
   title: string; 
   overview: string;
@@ -9,16 +7,16 @@ export default function MovieInfo ({ title, overview, genres, releaseDate }: {
 }) {
 
   return (
-    <div className="w-full md:w-1/2 p-4">
-      <h2 className="text-xl font-bold mb-2">Overview:</h2>
-      <p>{overview}</p>
-      <h2 className="text-xl font-bold mt-4 mb-2">Genres:</h2>
-      <ul>
+    <div className="w-full  p-10 mr-7 bg-gray-100 text-gray-800 shadow-lg rounded-lg">
+      <h2 className="text-2xl font-bold mb-2 border-b-2 border-gray-300">Overview:</h2>
+      <p className="mb-4">{overview}</p>
+      <h2 className="text-2xl font-bold mb-2 border-b-2 border-gray-300">Genres:</h2>
+      <ul className="list-none mb-4 space-y-1">
         {genres.map((genre) => (
-          <li key={genre.id}>{genre.name}</li>
+          <li key={genre.id} className="before:content-['◆'] before:pr-2">{genre.name}</li>
         ))}
       </ul>
-      <h2 className="text-xl font-bold mt-4 mb-2">Release Date:</h2>
+      <h2 className="text-2xl font-bold mb-2 border-b-2 border-gray-300">Release Date:</h2>
       <p>{releaseDate}</p>
     </div>
   );

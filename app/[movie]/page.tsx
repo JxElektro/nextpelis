@@ -15,18 +15,20 @@ export default async function MovieDetail({ params : { movie } }: { params: { mo
   const credits = await creditsData.json();
   const cast = credits.cast || [];
 
-  return (
-    <main>
-      <BannerDetail banner={res.backdrop_path} title={res.title} />
-      <div className="flex flex-wrap">
-        <div className="w-full md:w-1/2 flex justify-center items-center">
-          <Image src={`${imagePath}${res.poster_path}`} alt={res.title} width={300} height={400} />
-        </div>
+// ...
+return (
+  <main>
+    <BannerDetail banner={res.backdrop_path} title={res.title} />
+    <div className="flex flex-wrap">
+      <div className="w-full md:w-1/3 flex justify-center items-center p-4">
+        <Image src={`${imagePath}${res.poster_path}`} alt={res.title} width={300} height={400} className="rounded-lg shadow-md" />
+      </div>
+      <div className="w-full md:w-2/3 p-4">
         <MovieInfo title={res.title} overview={res.overview} genres={res.genres} releaseDate={res.release_date} />
       </div>
-      
-      <CastDetails cast={cast} />
-    
-    </main>
-  );
+    </div>
+    <CastDetails cast={cast} />
+  </main>
+);
+
 }
