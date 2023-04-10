@@ -1,14 +1,18 @@
 import Link from "next/link";
 import Image from "next/image";
 
-interface MovieProps {
+
+
+export default function Movie({ title, id, poster_path, release_date }:{
   title: string;
   id: number;
   poster_path: string;
   release_date: string;
-}
-
-export default function Movie({ title, id, poster_path, release_date }: MovieProps) {
+}) {
+  if (!poster_path) {
+    return null;
+  }
+  
   const imageUrl = `https://image.tmdb.org/t/p/original${poster_path}`;
 
   return (
