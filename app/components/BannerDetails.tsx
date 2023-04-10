@@ -5,7 +5,7 @@ export default function BannerDetail({ banner, title }: { banner: string; title:
 
   return (
     <main>
-      <div className="relative w-screen h-52">
+      <div className="relative w-full h-52">
         <Image
           className="w-full h-52"
           src={`${imagePath}${banner}`}
