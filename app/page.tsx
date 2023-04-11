@@ -1,5 +1,8 @@
+
+
 import PopularMovies from "./components/PopularMovies";
 import PremieredMovies from "./components/PremieredMovies";
+
 
 export default async function Home() {
   const dataPopular = await fetch(
@@ -38,8 +41,9 @@ export default async function Home() {
             id={popular.id}
             poster_path={popular.poster_path}
             release_date={popular.release_date}
-          />
+          /> 
         ))}
+
       </div>
     </main>
   );
