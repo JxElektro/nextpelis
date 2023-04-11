@@ -14,10 +14,10 @@ export default function PopularMovies({ title, id, poster_path, release_date }: 
   const imageUrl = `https://image.tmdb.org/t/p/original${poster_path}`;
 
   return (
-    <div className="flex flex-wrap justify-center items-center w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 p-4">
-      <div className=" flex flex-wrap justify-centerbg-gray rounded-lg shadow-lg overflow-hidden">
+    <div className="flex flex-wrap justify-center items-center w-64 p-4">
+      <div className="bg-gray rounded-lg shadow-lg overflow-hidden">
         <Link href={`/${id}`} title={`${title}`}>
-            <Image src={imageUrl} alt={title} width={300} height={450} className="hover:opacity-75 transition ease-in-out duration-150" />
+          <Image src={imageUrl} alt={title} width={300} height={450} className="hover:opacity-75 transition ease-in-out duration-150" />
         </Link>
         <div className="p-4">
           <h2 className="text-lg font-medium text-gray-900">{title}</h2>
