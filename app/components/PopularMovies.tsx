@@ -1,3 +1,4 @@
+
 import Link from "next/link";
 import Image from "next/image";
 
@@ -12,7 +13,6 @@ export default function PopularMovies({ title, id, poster_path, release_date }: 
   }
 
   const imageUrl = `https://image.tmdb.org/t/p/original${poster_path}`;
-
   return (
     <div className="flex flex-wrap justify-center items-center w-64 p-4">
       
