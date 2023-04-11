@@ -13,11 +13,9 @@ export default async function Home() {
   const resPopular = await dataPopular.json();
 
   return (
-    <main className="flex flex-col items-center h-screen  overflow-x-hidden">
-       <h1 className="text-2xl font-bold text-gray-900">Premiered Movies</h1>
+    <main className="flex flex-col items-center h-screen overflow-x-hidden">
+      <h1 className="text-2xl font-bold text-gray-900">Premiered Movies</h1>
       <div className="m-4">
-  
-       
         <div className="flex flex-nowrap gap-4 overflow-x-auto max-h-screen overflow-y-auto">
           {resPremiered.results.map((premiered: { id: number; title: string; backdrop_path: string; release_date: string }) => (
             <div key={premiered.id} className="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 xl:w-1/6 flex-shrink-0">
