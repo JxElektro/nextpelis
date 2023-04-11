@@ -2,23 +2,23 @@
 import Link from "next/link";
 import Image from "next/image";
 
-export default function PremieredMovies({ title, id, poster_path, release_date }: {
+export default function PremieredMovies({ title, id, backdrop_path, release_date }: {
   title: string;
   id: number;
-  poster_path: string;
+  backdrop_path: string;
   release_date: string;
 }) {
-  if (!poster_path) {
+  if (!backdrop_path) {
     return null;
   }
-
-  const imageUrl = `https://image.tmdb.org/t/p/original${poster_path}`;
+  const imageUrl = `https://image.tmdb.org/t/p/original${backdrop_path}`;
 
   return (
     <div className="flex flex-col items-center p-4">
       <div className="bg-gray rounded-lg shadow-lg overflow-hidden">
         <Link href={`/${id}`} title={`${title}`}>
-          <Image src={imageUrl} alt={title} width={300} height={450} className="hover:opacity-75 transition ease-in-out duration-150" />
+          <Image src={imageUrl} alt={title}  width={936}
+          height={120} className="hover:opacity-75 transition ease-in-out duration-150" />
         </Link>
         <div className="p-4">
           <h2 className="text-lg font-medium text-gray-900">{title}</h2>

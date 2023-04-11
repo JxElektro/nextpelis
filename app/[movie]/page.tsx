@@ -15,7 +15,7 @@ export default async function MovieDetail({ params : { movie } }: { params: { mo
   const credits = await creditsData.json();
   const cast = credits.cast || [];
 
-// ...
+
 return (
   <main>
     <BannerDetail banner={res.backdrop_path} title={res.title} />

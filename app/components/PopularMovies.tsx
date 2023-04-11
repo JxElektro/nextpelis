@@ -15,6 +15,7 @@ export default function PopularMovies({ title, id, poster_path, release_date }: 
 
   return (
     <div className="flex flex-wrap justify-center items-center w-64 p-4">
+      
       <div className="bg-gray rounded-lg shadow-lg overflow-hidden">
         <Link href={`/${id}`} title={`${title}`}>
           <Image src={imageUrl} alt={title} width={300} height={450} className="hover:opacity-75 transition ease-in-out duration-150" />
