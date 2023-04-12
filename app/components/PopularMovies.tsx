@@ -13,16 +13,24 @@ const PopularMovies = () => {
   const API_TOKEN = "c2d1eba2da68e492d514141b781c25cf";
 
   const fetchPopularMovies = async () => {
-    const res = await fetch(
-      `https://api.themoviedb.org/3/movie/popular?api_key=${API_TOKEN}&language=en-US&page=${page}`
-    );
-    const data = await res.json();
-    const results = Array.isArray(data.results) ? data.results : [];
+    const pageSize = 350;
+    const pagesToFetch = Math.ceil(pageSize / 20);
+    const fetchedMovies: any[] = [];
 
+    for (let i = 0; i < pagesToFetch; i++) {
+      const res = await fetch(
+        `https://api.themoviedb.org/3/movie/popular?api_key=${API_TOKEN}&language=en-US&page=${page + i}`
+      );
+      const data = await res.json();
+      const results = Array.isArray(data.results) ? data.results : [];
+      fetchedMovies.push(...results);
+
+      setTotalPages(data.total_pages);
+    }
 
     setMovies((prevMovies) => {
       const uniqueMovies: { [key: number]: any } = {};
-      [...prevMovies, ...results].forEach((movie) => {
+      [...prevMovies, ...fetchedMovies].forEach((movie) => {
         if (!uniqueMovies.hasOwnProperty(movie.id)) {
           uniqueMovies[movie.id] = movie;
         }
@@ -30,7 +38,7 @@ const PopularMovies = () => {
       return Object.values(uniqueMovies);
     });
 
-    setTotalPages(data.total_pages);
+    setPage((prevPage) => prevPage + pagesToFetch);
   };
 
   useEffect(() => {
@@ -39,45 +47,44 @@ const PopularMovies = () => {
 
   const handleLoadMore = () => {
     if (page < totalPages) {
-      setPage((prevPage) => prevPage + 1);
+      fetchPopularMovies();
     }
   };
 
   return (
-    <div className="flex flex-wrap justify-center w-full">
-    <InfiniteScroll
-      dataLength={movies.length}
-      next={handleLoadMore}
-      hasMore={page < totalPages}
-      loader={<h4>Loading...</h4>}
-      className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
-    >
-      {movies.map(({ id, title, poster_path, release_date }) => {
-        if (!poster_path) {
-          return null;
-        }
+    <div className="flex flex-wrap justify-center w-full  pl-4 pr-4" >
+      <InfiniteScroll
+        dataLength={movies.length}
+        next={handleLoadMore}
+        hasMore={page < totalPages}
+        loader={<h4>Loading...</h4>}
+        className="grid  grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 "
+      >
+        {movies.map(({ id, title, poster_path, release_date, backdrop_path }) => {
+          if (!poster_path) {
+            return null;
+          }
 
-        const imageUrl = `https://image.tmdb.org/t/p/original${poster_path}`;
+          const imageUrl = `https://image.tmdb.org/t/p/original${poster_path || backdrop_path}`;
 
-        return (
-          <div key={id} className="bg-gray rounded-lg shadow-lg overflow-hidden">
-            <Link href={`/${id}`} title={`${title}`}>
-              <Image
-                src={imageUrl}
-                alt={title}
-                width={300}
-                height={450}
-                className="hover:opacity-75 transition ease-in-out duration-150"
-              />
-            </Link>
-            <div className="p-4">
-              <h2 className="text-lg font-medium text-gray-900">{title}</h2>
-              <p className="text-sm font-medium text-gray-500">{release_date}</p>
+          return (
+            <div key={id} className="bg-gray rounded-lg pr-4 pl-4 pt-4 shadow-lg overflow-hidden ">
+              <Link href={`/${id}`} title={`${title}`}>
+                <Image
+                  src={imageUrl}
+                  alt={title}
+                  width={265}
+                  height={250}
+                  className="hover:opacity-75 transition ease-in-out duration-150"
+                />
+              </Link>
+              <div className="p-4">
+                <h2 className="text-lg text-center font-medium text-gray-900">{title}</h2>
+              </div>
             </div>
-          </div>
-        );
-      })}
-    </InfiniteScroll>
+          );
+        })}
+      </InfiniteScroll>
     </div>
   );
 };
