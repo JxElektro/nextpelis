@@ -6,8 +6,6 @@ import Image from "next/image";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 
-
-
 const PopularMovies = ({token} : {
   token: string;
 }
