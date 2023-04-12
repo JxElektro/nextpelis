@@ -1,36 +1,35 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Mi App de Películas en Next.js
+Esta aplicación fue desarrollada utilizando Next.js (v13.3.0) y es muy similar a su contraparte en React Native y Expo. Permite a los usuarios explorar películas populares y recién estrenadas, obtener detalles de las películas y experimentar funciones adicionales como ajustar el tamaño del texto, cambiar entre modo claro/oscuro y leer en voz alta el texto en pantalla.
 
-## Getting Started
+Requisitos
+Node.js v18.15
+npm
+Dependencias
+next (v13.3.0)
+tailwindcss (v3.3.1)
+typescript (v5.0.4)
+dotenv (v16.0.3)
+react-infinite-scroll-component (v6.1.0)
+Instalación
+Clone este repositorio en su máquina local.
 
-First, run the development server:
+Ejecute npm install para instalar las dependencias necesarias.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+Cree un archivo .env en la carpeta raíz del proyecto y agregue la siguiente línea:
+API_TOKEN=c2d1eba2da68e492d514141b781c25cf
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Ejecute npm run dev para iniciar la aplicación.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Estructura del proyecto
+La aplicación cuenta con un Layout que envuelve la aplicación y una Navbar que se renderiza en todas las páginas. Dentro de la aplicación, se encuentran dos componentes: PremieredMovies y PopularMovies.
 
-[http://localhost:3000/api/hello](http://localhost:3000/api/hello) is an endpoint that uses [Route Handlers](https://beta.nextjs.org/docs/routing/route-handlers). This endpoint can be edited in `app/api/hello/route.ts`.
+PremieredMovies
+Este componente toma datos desde la API en las páginas a través de props y renderiza las películas recién estrenadas.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+PopularMovies
+Este componente utiliza una función asincrónica con fetch para realizar la hidratación del componente según sea necesario, asegurándose de que no se repita ningún ID ya renderizado. Renderiza las películas populares utilizando la información obtenida a través de una petición a la API.
 
-## Learn More
+Al hacer clic en alguno de los elementos de estas páginas, se pasa a la siguiente página que es un componente que hace la llamada a la API según el params enviado por props. Esto le da acceso al número de ID de la película seleccionada y, a su vez, realiza un fetch a la API para pasar la información a sus subcomponentes BannerDetails, MovieInfo y CastDetails a través de los props.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Punto de entrada
+El punto de entrada principal de la aplicación es app/page.tsx.

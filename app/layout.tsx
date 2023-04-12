@@ -2,6 +2,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import NavBar from "./components/NavBar";
 
+
 const font = Poppins({
   weight: ["400", "600", "700"],
   subsets: ["latin"],
@@ -12,6 +13,8 @@ export const metadata = {
   title: `Next Pelis`,
   description: "A simple movie app built with Next.js",
 };
+
+/* La navbar pasa por aqui a todas las paginas */
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
+
+/* NavBar de la pagina principal con enrutamiento */
 export default function NavBar() {
   return (
     <nav className="flex flex-wrap items-center w-full p-3 bg-gradient-to-r from-purple-800 via-purple-700 to-blue-600">
@@ -14,7 +16,6 @@ export default function NavBar() {
               className="mr-3"
             />
             <h1 className="text-white font-bold text-2xl">PelisNext</h1>
-          
         </Link>
       </div>
     </nav>

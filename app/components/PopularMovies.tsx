@@ -5,12 +5,17 @@ import Link from "next/link";
 import Image from "next/image";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-const PopularMovies = () => {
+
+
+
+const PopularMovies = ({token} : {
+  token: string;
+}
+) => {
   const [movies, setMovies] = useState<any[]>([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-
-  const API_TOKEN = "c2d1eba2da68e492d514141b781c25cf";
+  
 
   const fetchPopularMovies = async () => {
     const pageSize = 350;
@@ -19,7 +24,7 @@ const PopularMovies = () => {
 
     for (let i = 0; i < pagesToFetch; i++) {
       const res = await fetch(
-        `https://api.themoviedb.org/3/movie/popular?api_key=${API_TOKEN}&language=en-US&page=${page + i}`
+        `https://api.themoviedb.org/3/movie/popular?api_key=${token}&language=en-US&page=${page + i}`
       );
       const data = await res.json();
       const results = Array.isArray(data.results) ? data.results : [];
@@ -50,6 +55,8 @@ const PopularMovies = () => {
       fetchPopularMovies();
     }
   };
+
+
 
   return (
     <div className="flex flex-wrap justify-center w-full  pl-4 pr-4" >

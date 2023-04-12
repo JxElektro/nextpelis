@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+/* este componente muestra el banner de la pelicula tomando la informacion desde las props*/
 export default function BannerDetail({ banner, title }: { banner: string; title: string }) {
   const imagePath = `https://image.tmdb.org/t/p/original`;
 

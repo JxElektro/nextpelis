@@ -7,6 +7,8 @@ interface CastMember {
   character: string;
 }
 
+
+/* este componente muestra los actores de la pelicula tomando la informacion desde las props*/
 const CastDetails = ({ cast }: { cast: CastMember[] }) => {
   const imagePath = `https://image.tmdb.org/t/p/w500`;
 

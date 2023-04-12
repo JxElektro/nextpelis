@@ -1,6 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 
+/* Recibe la data de la pelicula y la muestra en la pagina principal */
+
 export default function PremieredMovies({ title, id, backdrop_path, release_date, poster_path }: {
   title: string;
   id: number;

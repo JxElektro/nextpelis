@@ -1,12 +1,17 @@
 import PopularMovies from "./components/PopularMovies";
 import PremieredMovies from "./components/PremieredMovies";
 
+
+
 export default async function Home() {
+  const token: string = process.env.API_TOKEN || "";
+  /* Premiered Movies hace aca el fetch de la API y la pasa como props*/
   const dataPremiered = await fetch(
-    `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.API_TOKEN}&language=en-US&page=1`
+    `https://api.themoviedb.org/3/movie/popular?api_key=${token}&language=en-US&page=1`
   );
 
   const resPremiered = await dataPremiered.json();
+  
 
   return (
     <main className="flex flex-col items-center overflow-x-hidden  ">
@@ -30,7 +35,7 @@ export default async function Home() {
       
       <div className="flex flex-wrap justify-center w-full bg-purple-50">
       <h1 className="text-2xl font-bold text-gray-900 ">Popular Movies</h1>
-        <PopularMovies />
+        <PopularMovies token={token} />
       </div>
     </main>
   );
